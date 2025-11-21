@@ -20,9 +20,9 @@ import PageHeader from '../components/PageHeader'
 const qrItems = [
   {
     id: 1,
-    title: 'Ссылка на портал Qollab',
+    title: 'Ссылка на портал CAEPCO',
     description: 'Быстрый переход в корпоративный портал.',
-    url: 'https://example.com/qollab-portal'
+    url: 'https://caepco.kz/ru/home.html'
   },
   {
     id: 2,

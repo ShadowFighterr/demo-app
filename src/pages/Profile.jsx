@@ -26,7 +26,7 @@ const profileData = {
   balance: '45 000 Т',
   email: 'aruzhan@example.kz',
   phone: '+7 701 222 33 44',
-  description: 'Отвечаю за развитие Qollab и внутренних сервисов компании.',
+  description: 'Отвечаю за развитие CAEPCO и внутренних сервисов компании.',
   manager: 'Ерлан Саржанов, Head of Product',
   team: ['Динара К.', 'Руслан М.']
 }

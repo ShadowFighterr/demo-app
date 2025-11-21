@@ -3,37 +3,20 @@ import React from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { BottomTabs } from '../components/BottomTabs'
 
-import {
-  IconButton,
-  Avatar,
-  Tooltip,
-  useTheme
-} from '@mui/material'
+import { IconButton, Avatar, useTheme } from '@mui/material'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import LightModeIcon from '@mui/icons-material/LightMode'
-import { useNavigate } from 'react-router-dom'
+
+// путь до файла в public/
+// public/images/logo_caepco_ru.png  →  /images/logo_caepco_ru.png
+const LOGO_SRC = '/images/logo_caepco_ru.png'
 
 export function MobileShell({ children, mode, toggleMode }) {
   const { user } = useAuth()
   const theme = useTheme()
-  const navigate = useNavigate()
 
   const phoneMaxWidth = 430
-  const phoneHeight = 760 // reduced height so it does not fill full screen
-
-  const handleAvatarClick = () => {
-    if (user) {
-      navigate('/profile')
-    } else {
-      navigate('/login')
-    }
-  }
-
-  const avatarInitials = (user?.name || user?.email || 'U')
-    .split(' ')
-    .map(s => s[0])
-    .join('')
-    .slice(0, 2)
+  const phoneHeight = 760 // reduce height so it does not fill full screen
 
   return (
     <div
@@ -51,7 +34,7 @@ export function MobileShell({ children, mode, toggleMode }) {
           width: '100%',
           maxWidth: phoneMaxWidth,
           height: phoneHeight,
-          maxHeight: 'calc(100vh - 32px)',
+          maxHeight: 'calc(100vh - 32px)', // keep margin on very small screens
           background: theme.palette.background.default,
           display: 'flex',
           flexDirection: 'column',
@@ -72,8 +55,32 @@ export function MobileShell({ children, mode, toggleMode }) {
             background: theme.palette.background.paper
           }}
         >
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontWeight: 700, fontSize: 16 }}>Demo</span>
+          {/* logo + название компании */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8
+            }}
+          >
+            <img
+              src={LOGO_SRC}
+              alt="Центрально-Азиатская Электроэнергетическая Корпорация"
+              style={{
+                height: 40,
+                display: 'block'
+              }}
+            />
+            {/* если нужно, можно спрятать текст или упростить */}
+            <span
+              style={{
+                fontWeight: 600,
+                fontSize: 14,
+                whiteSpace: 'nowrap'
+              }}
+            >
+              {/* ЦАЭК */}
+            </span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -89,23 +96,15 @@ export function MobileShell({ children, mode, toggleMode }) {
               )}
             </IconButton>
 
-            <Tooltip title={user ? 'Открыть профиль' : 'Войти'}>
-              <IconButton
-                size="small"
-                onClick={handleAvatarClick}
-                sx={{ p: 0 }}
-              >
-                <Avatar
-                  sx={{
-                    width: 30,
-                    height: 30,
-                    fontSize: 12
-                  }}
-                >
-                  {avatarInitials}
-                </Avatar>
-              </IconButton>
-            </Tooltip>
+            {user && (
+              <Avatar sx={{ width: 30, height: 30, fontSize: 12 }}>
+                {(user?.name || user?.email || 'U')
+                  .split(' ')
+                  .map(s => s[0])
+                  .join('')
+                  .slice(0, 2)}
+              </Avatar>
+            )}
           </div>
         </header>
 

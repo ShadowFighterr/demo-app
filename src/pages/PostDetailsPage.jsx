@@ -79,6 +79,21 @@ export default function PostDetailsPage () {
         {post.title}
       </Typography>
 
+      {/* Обложка новости */}
+      {post.image && (
+        <Box sx={{ mb: 1 }}>
+          <img
+            src={post.image}
+            alt={post.title}
+            style={{
+              width: '100%',
+              borderRadius: 16,
+              display: 'block'
+            }}
+          />
+        </Box>
+      )}
+
       {/* Текст новости */}
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
         {post.content.map((paragraph, idx) => (

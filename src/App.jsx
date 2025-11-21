@@ -32,7 +32,7 @@ import {
 
 import { MobileShell } from './layout/MobileShell'
 
-function makeTheme(mode) {
+function makeTheme (mode) {
   const isLight = mode === 'light'
 
   return createTheme({
@@ -52,10 +52,39 @@ function makeTheme(mode) {
         ? 'rgba(15,23,42,0.06)'
         : 'rgba(255,255,255,0.06)'
     },
+
+    // новая современная типографика
     typography: {
-      fontFamily: 'Inter, Roboto, "Helvetica Neue", Arial',
-      h4: { fontWeight: 700 }
+      fontFamily:
+        '"Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+
+      h4: {
+        fontWeight: 700,
+        letterSpacing: 0.2
+      },
+      h5: {
+        fontWeight: 700,
+        letterSpacing: 0.2
+      },
+      h6: {
+        fontWeight: 700,
+        letterSpacing: 0.1
+      },
+      body1: {
+        fontSize: 14,
+        lineHeight: 1.5
+      },
+      body2: {
+        fontSize: 13,
+        lineHeight: 1.5
+      },
+      button: {
+        textTransform: 'none',
+        fontWeight: 600,
+        letterSpacing: 0.2
+      }
     },
+
     shape: { borderRadius: 10 },
     components: {
       MuiPaper: {
@@ -118,7 +147,7 @@ function makeTheme(mode) {
   })
 }
 
-export default function App() {
+export default function App () {
   const prefersDark = useMediaQuery('(prefers-color-scheme: dark)')
   const saved =
     (typeof window !== 'undefined' &&
